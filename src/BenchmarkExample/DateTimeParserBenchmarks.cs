@@ -22,4 +22,22 @@ public class DateTimeParserBenchmarks
     {
         Parser.GetYearFromDateTimeUsingSplit(DateTime);
     }
+    
+    [Benchmark]
+    public void GetYearFromDateTimeUsingRange()
+    {
+        Parser.GetYearFromDateTimeUsingRange(DateTime);
+    }
+    
+    [Benchmark]
+    public void GetYearFromDateTimeSpanUsingRange()
+    {
+        Parser.GetYearFromDateTimeSpanUsingRange(DateTime);
+    }
+
+    [Benchmark]
+    public void GetYearFromDateTimeSpanUsingManualConversion()
+    {
+        Parser.GetYearFromDateTimeSpanUsingManualConversion(DateTime);
+    }
 }
