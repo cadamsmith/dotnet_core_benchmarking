@@ -7,37 +7,42 @@ namespace BenchmarkExample;
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
-internal class DateTimeParserBenchmarks
+public class DateTimeParserBenchmarks
 {
-    private const string DateTime = "2019-12-13T16:33:06Z";
+    private readonly string _dateTime;
+
+    public DateTimeParserBenchmarks()
+    {
+        _dateTime = "2019-12-13T16:33:06Z";
+    }
 
     [Benchmark(Baseline = true)]
-    public static void GetYearFromDateTime()
+    public void GetYearFromDateTime()
     {
-        DateTimeParser.GetYearFromDateTime(DateTime);
+        DateTimeParser.GetYearFromDateTime(_dateTime);
     }
 
     [Benchmark]
-    public static void GetYearFromDateTimeUsingSplit()
+    public void GetYearFromDateTimeUsingSplit()
     {
-        DateTimeParser.GetYearFromDateTimeUsingSplit(DateTime);
+        DateTimeParser.GetYearFromDateTimeUsingSplit(_dateTime);
     }
     
     [Benchmark]
-    public static void GetYearFromDateTimeUsingRange()
+    public void GetYearFromDateTimeUsingRange()
     {
-        DateTimeParser.GetYearFromDateTimeUsingRange(DateTime);
+        DateTimeParser.GetYearFromDateTimeUsingRange(_dateTime);
     }
     
     [Benchmark]
-    public static void GetYearFromDateTimeSpanUsingRange()
+    public void GetYearFromDateTimeSpanUsingRange()
     {
-        DateTimeParser.GetYearFromDateTimeSpanUsingRange(DateTime);
+        DateTimeParser.GetYearFromDateTimeSpanUsingRange(_dateTime);
     }
 
     [Benchmark]
-    public static void GetYearFromDateTimeSpanUsingManualConversion()
+    public void GetYearFromDateTimeSpanUsingManualConversion()
     {
-        DateTimeParser.GetYearFromDateTimeSpanUsingManualConversion(DateTime);
+        DateTimeParser.GetYearFromDateTimeSpanUsingManualConversion(_dateTime);
     }
 }
