@@ -1,14 +1,14 @@
 
 namespace BenchmarkExample;
 
-public class DateTimeParser
+internal static class DateTimeParser
 {
     /// <summary>
     /// Retrieves year from iso datetime string, using DateTime.Parse and DateTime.Year property
     /// </summary>
     /// <param name="isoDateTime">datetime in ISO format</param>
     /// <returns>year number</returns>
-    public int GetYearFromDateTime(string isoDateTime)
+    public static int GetYearFromDateTime(string isoDateTime)
     {
         var dateTime = DateTime.Parse(isoDateTime);
         return dateTime.Year;
@@ -19,7 +19,7 @@ public class DateTimeParser
     /// </summary>
     /// <param name="isoDateTime">datetime in ISO format</param>
     /// <returns>year number</returns>
-    public int GetYearFromDateTimeUsingSplit(string isoDateTime)
+    public static int GetYearFromDateTimeUsingSplit(string isoDateTime)
     {
         var splitOnHyphen = isoDateTime.Split("-");
         return int.Parse(splitOnHyphen[0]);
@@ -30,24 +30,29 @@ public class DateTimeParser
     /// </summary>
     /// <param name="isoDateTime"></param>
     /// <returns></returns>
-    public int GetYearFromDateTimeUsingRange(string isoDateTime)
+    public static int GetYearFromDateTimeUsingRange(string isoDateTime)
     {
         var indexOfHyphen = isoDateTime.IndexOf("-", StringComparison.Ordinal);
         return int.Parse(isoDateTime[0..indexOfHyphen]);
     }
 
     /// <summary>
-    /// Retrieves year from iso datetime span, using range operator
+    /// Retrieves year from iso datetime span, using range operator and int.Parse
     /// </summary>
     /// <param name="isoDateTimeSpan"></param>
     /// <returns></returns>
-    public int GetYearFromDateTimeSpanUsingRange(ReadOnlySpan<char> isoDateTimeSpan)
+    public static int GetYearFromDateTimeSpanUsingRange(ReadOnlySpan<char> isoDateTimeSpan)
     {
         var indexOfHyphen = isoDateTimeSpan.IndexOf("-", StringComparison.Ordinal);
         return int.Parse(isoDateTimeSpan[..indexOfHyphen]);
     }
     
-    public int GetYearFromDateTimeSpanUsingManualConversion(ReadOnlySpan<char> isoDateTimeSpan)
+    /// <summary>
+    /// Retrieves year from iso datetime span, using range operator and manual conversion to int
+    /// </summary>
+    /// <param name="isoDateTimeSpan"></param>
+    /// <returns></returns>
+    public static int GetYearFromDateTimeSpanUsingManualConversion(ReadOnlySpan<char> isoDateTimeSpan)
     {
         var indexOfHyphen = isoDateTimeSpan.IndexOf("-", StringComparison.Ordinal);
         var yearAsASpan = isoDateTimeSpan[..indexOfHyphen];
